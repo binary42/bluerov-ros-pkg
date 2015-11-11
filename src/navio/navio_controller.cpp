@@ -95,7 +95,7 @@ void * NavioController::PublishNavioData( void *controllerIn )
 
   std::vector<float>		data;
 
-  // A few things horrid about this black. Imu raw used the float[9] of the 
+  // A few things horrid about this block. Imu raw used the float[9] of the 
   // ROS Imu message type. No raw IMU message exists, so we need to create one.
   // For now, using existing messages for testing.
   while( true )
