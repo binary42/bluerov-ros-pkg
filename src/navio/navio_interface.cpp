@@ -18,8 +18,8 @@ NavioInterface::NavioInterface() : _pin( _outputEnablePin )
 	auto init = {ADS1115_MUX_P0_NG, ADS1115_MUX_P1_NG, ADS1115_MUX_P2_NG, ADS1115_MUX_P3_NG};
 	std::copy( init.begin(), init.end(), _muxes );
 
-//  _muxes = { ADS1115_MUX_P0_NG, ADS1115_MUX_P1_NG, ADS1115_MUX_P2_NG, ADS1115_MUX_P3_NG };
-  _results[ ARRAY_SIZE( _muxes ) ] = { 0.0f };
+	auto init2 = {0.0f, 0.0f, 0.0f, 0.0f};
+	std::copy( init2.begin(), init2.end(), _results);
 }
 
 NavioInterface::~NavioInterface()

@@ -66,7 +66,7 @@ class NavioInterface
     ADS1115                             _adc;
     uint16_t                            _muxes[4];
 
-    float                               _results[];
+    float                               _results[4];
     static const uint8_t                _outputEnablePin;
 
     Navio::Pin                          _pin;
