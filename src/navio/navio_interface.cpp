@@ -14,8 +14,9 @@ const uint8_t NavioInterface::_outputEnablePin = RPI_GPIO_27;
 
 NavioInterface::NavioInterface() : _pin( _outputEnablePin )
 {
-  auto init = std::initializer_list<uint16_t>({ADS1115_MUX_P0_NG, ADS1115_MUX_P1_NG, ADS1115_MUX_P2_NG, ADS1115_MUX_P3_NG });
-  std::copy( init.begin(), init.end(), _muxes );
+  //auto init = std::initializer_list<uint16_t>({ADS1115_MUX_P0_NG, ADS1115_MUX_P1_NG, ADS1115_MUX_P2_NG, ADS1115_MUX_P3_NG});
+	auto init = {ADS1115_MUX_P0_NG, ADS1115_MUX_P1_NG, ADS1115_MUX_P2_NG, ADS1115_MUX_P3_NG};
+	std::copy( init.begin(), init.end(), _muxes );
 
 //  _muxes = { ADS1115_MUX_P0_NG, ADS1115_MUX_P1_NG, ADS1115_MUX_P2_NG, ADS1115_MUX_P3_NG };
   _results[ ARRAY_SIZE( _muxes ) ] = { 0.0f };
