@@ -139,8 +139,11 @@ int main( int argc, char **argv )
 
   ROS_INFO( "Navio+ Controller Online" );
 
-  NavioController controller;
-  controller.Spin();
+  std::unique_ptr<NavioController> controller( new NavioController );
+
+  controller->InitNavioInterface();
+
+  controller->Spin();
 
   return 0;
 }
