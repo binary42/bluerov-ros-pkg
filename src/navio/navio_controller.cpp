@@ -135,6 +135,10 @@ void * NavioController::PublishNavioData( void *controllerIn )
 //------- Main -------------------------------
 int main( int argc, char **argv )
 {
+	// TODO - launch reader thread
+	// add return value init true/false
+	//finish up asap.
+
   ros::init( argc, argv, "navio_controller" );
 
   ROS_INFO( "Navio+ Controller Online" );
