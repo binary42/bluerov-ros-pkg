@@ -10,7 +10,7 @@
 
 NavioController::NavioController()
 {
-  p_interface 	= new NavioInterface();
+//  p_interface 	= new NavioInterface();
   _cmdVelSub 	= _nodeHandle.subscribe<geometry_msgs::Twist>( "cmd_vel", 1, &NavioController::VelCallback, this );
 
   imuPub 	= _nodeHandle.advertise<sensor_msgs::Imu>( "imu_raw", 1 );
@@ -131,8 +131,6 @@ void * NavioController::PublishNavioData( void *controllerIn )
 
     controller->imuPub.publish( imuRawMessage );
 
-    ROS_INFO("HERER");
-
     // GPS
     //data = controller-GetGPS();
 
@@ -150,11 +148,11 @@ int main( int argc, char **argv )
 
   std::unique_ptr<NavioController> controller( new NavioController );
 
-  controller->InitNavioInterface();
+//  controller->InitNavioInterface();
 
   ROS_INFO( "Navio+ Controller Online" );
 
-  controller->Spin();
+//  controller->Spin();
 
   ROS_INFO( "Shutting Down Navio Controller" );
 
