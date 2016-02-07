@@ -148,7 +148,7 @@ int main( int argc, char **argv )
 {
   ros::init( argc, argv, "navio_controller" );
 
-  NavioController *controller = new NavioController();
+  std::unique_ptr<NavioController> controller( new NavioController );
 
   controller->InitNavioInterface();
 
