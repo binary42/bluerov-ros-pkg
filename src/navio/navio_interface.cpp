@@ -87,6 +87,8 @@ std::vector<float> NavioInterface::GetIMU()
   imuData.push_back( my );
   imuData.push_back( mz );
 
+  ROS_INFO( "test data: %f", ax );
+
   return imuData;
 }
 
