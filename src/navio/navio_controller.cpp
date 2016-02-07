@@ -152,9 +152,9 @@ int main( int argc, char **argv )
 
   controller->InitNavioInterface();
 
-  ROS_INFO( "Navio+ Controller Online" );
+//  ROS_INFO( "Navio+ Controller Online" );
 
-  controller->Spin();
+//  controller->Spin();
 
   ROS_INFO( "Shutting Down Navio Controller" );
 
