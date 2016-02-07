@@ -45,7 +45,7 @@ void NavioController::Spin()
 	   while( ros::ok() )
 	   {
 	     ros::spinOnce();
-
+ROS_INFO("HERE@");
 	     loopRate.sleep();
 	   }
   }else
