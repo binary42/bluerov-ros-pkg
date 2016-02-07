@@ -28,7 +28,7 @@ generate_messages(DEPENDENCIES
 
 ## Add dynamic reconfigure api
 generate_dynamic_reconfigure_options(
-  config/teleop_xbox.config
+  #config/teleop_xbox.config
  # config/simple_pilot.config
 )
 
@@ -52,9 +52,9 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 #target_link_libraries(simple_pilot ${catkin_LIBRARIES})
 #add_dependencies(simple_pilot ${catkin_EXPORTED_TARGETS})
 
-add_executable(teleop_xbox src/teleop_xbox.cpp)
-target_link_libraries(teleop_xbox ${catkin_LIBRARIES})
-add_dependencies(teleop_xbox ${catkin_EXPORTED_TARGETS})
+#add_executable(teleop_xbox src/teleop_xbox.cpp)
+#target_link_libraries(teleop_xbox ${catkin_LIBRARIES})
+#add_dependencies(teleop_xbox ${catkin_EXPORTED_TARGETS})
 
 add_executable(navio_controller src/navio/navio_controller.cpp)
 add_library(navio thirdparty/navio/PCA9685.cpp 
