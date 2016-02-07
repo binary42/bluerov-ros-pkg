@@ -41,7 +41,7 @@ class NavioController
     ros::NodeHandle                     _nodeHandle;
     ros::Subscriber                     _cmdVelSub;
 
-    pthread_t				_dataThread;
+    pthread_t							_dataThread;
 
     // Methods
     void VelCallback( const geometry_msgs::Twist::ConstPtr &cmdVel );

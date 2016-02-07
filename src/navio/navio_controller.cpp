@@ -87,13 +87,13 @@ void NavioController::VelCallback (const geometry_msgs::Twist::ConstPtr &cmdVelI
 
 void * NavioController::PublishNavioData( void *controllerIn )
 {
-  NavioController *controller = (navioController*)controllerIn;
+  NavioController *controller = (NavioController*)controllerIn;
 
-  sensor_msgs::Imu 		imuRawMessage;
-  sensor_msgs::Imu 		imuaFusedMessage;
-  sensor_msgs::NavSatFix	gpsMessage;
+  sensor_msgs::Imu 				imuRawMessage;
+  sensor_msgs::Imu 				imuaFusedMessage;
+  sensor_msgs::NavSatFix		gpsMessage;
 
-  std::vector<float>		data;
+  std::vector<float>			data;
 
   // A few things horrid about this block. Imu raw used the float[9] of the 
   // ROS Imu message type. No raw IMU message exists, so we need to create one.
@@ -101,11 +101,11 @@ void * NavioController::PublishNavioData( void *controllerIn )
   while( true )
   {
     // IMU 
-    data = controller->GetImu();
+    data = controller->p_interface->GetIMU();
 
     imuRawMessage.orientation.x 	= -1;
     imuRawMessage.linear_acceleration.x = -1;
-    imuRawMessage.angular_velocity.x 	= -1
+    imuRawMessage.angular_velocity.x 	= -1;
 
     imuRawMessage.angular_velocity_covariance[0] = data[0];
     imuRawMessage.angular_velocity_covariance[1] = data[1];
@@ -119,7 +119,7 @@ void * NavioController::PublishNavioData( void *controllerIn )
     imuRawMessage.angular_velocity_covariance[7] = data[7];
     imuRawMessage.angular_velocity_covariance[8] = data[8];
 
-    imuPub.publish( imuRawMessage );
+    controller->imuPub.publish( imuRawMessage );
 
     // GPS
     //data = controller-GetGPS();
