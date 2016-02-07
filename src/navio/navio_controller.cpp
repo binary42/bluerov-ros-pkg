@@ -10,7 +10,7 @@
 
 NavioController::NavioController()
 {
-//  p_interface 	= new NavioInterface();
+  p_interface 	= new NavioInterface();
   _cmdVelSub 	= _nodeHandle.subscribe<geometry_msgs::Twist>( "cmd_vel", 1, &NavioController::VelCallback, this );
 
   imuPub 	= _nodeHandle.advertise<sensor_msgs::Imu>( "imu_raw", 1 );
