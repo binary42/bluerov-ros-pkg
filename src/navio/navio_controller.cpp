@@ -49,7 +49,7 @@ ROS_INFO("HERE@");
 	     loopRate.sleep();
 	   }
   }else
-  {
+  {ROS_INFO("OUTOFTHREAD");
 	  return;
   }
 }
