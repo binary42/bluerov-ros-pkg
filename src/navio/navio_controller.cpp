@@ -128,6 +128,8 @@ void * NavioController::PublishNavioData( void *controllerIn )
 
     controller->imuPub.publish( imuRawMessage );
 
+    ROS_INFO("HERER");
+
     // GPS
     //data = controller-GetGPS();
 
