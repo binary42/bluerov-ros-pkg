@@ -37,13 +37,20 @@ void NavioController::InitNavioInterface()
 
 void NavioController::Spin()
 {
-  // 200Hz
-  ros::Rate loopRate( 200 );
-
-  while( ros::ok() )
+  if( !pthread_create( &_dataThread, nullptr, PublishNavioData, (void*)this ) )
   {
-    ros::spinOnce();
-    loopRate.sleep();
+	  // 200Hz
+	   ros::Rate loopRate( 200 );
+
+	   while( ros::ok() )
+	   {
+	     ros::spinOnce();
+
+	     loopRate.sleep();
+	   }
+  }else
+  {
+	  return;
   }
 }
 
@@ -139,7 +146,12 @@ int main( int argc, char **argv )
   ROS_INFO( "Navio+ Controller Online" );
 
   NavioController controller;
+
+  controller.InitNavioInterface();
+
   controller.Spin();
+
+  ROS_INFO( "Shutting Down Navio Controller" );
 
   return 0;
 }
