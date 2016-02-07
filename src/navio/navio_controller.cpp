@@ -30,6 +30,8 @@ NavioController::~NavioController()
 
 void NavioController::InitNavioInterface()
 {
+  ROS_INFO( "Initializing Interface" );
+
   p_interface->Initialize();
   // 50Hz
   p_interface->SetFrequency( 50 );
@@ -45,11 +47,12 @@ void NavioController::Spin()
 	   while( ros::ok() )
 	   {
 	     ros::spinOnce();
-ROS_INFO("HERE@");
+
 	     loopRate.sleep();
 	   }
   }else
-  {ROS_INFO("OUTOFTHREAD");
+  {
+	  ROS_INFO( ">>>> Error Creating Publisher Thread, Exiting <<<< " );
 	  return;
   }
 }
@@ -145,11 +148,11 @@ int main( int argc, char **argv )
 {
   ros::init( argc, argv, "navio_controller" );
 
-  ROS_INFO( "Navio+ Controller Online" );
-
   NavioController controller;
 
   controller.InitNavioInterface();
+
+  ROS_INFO( "Navio+ Controller Online" );
 
   controller.Spin();
 
