@@ -148,7 +148,7 @@ int main( int argc, char **argv )
 
   std::unique_ptr<NavioController> controller( new NavioController );
 
-//  controller->InitNavioInterface();
+  controller->InitNavioInterface();
 
   ROS_INFO( "Navio+ Controller Online" );
 
