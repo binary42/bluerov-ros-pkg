@@ -18,7 +18,7 @@ NavioInterface::NavioInterface() : _pin( _outputEnablePin )
 
 	std::copy( init.begin(), init.end(), _muxes );
 
-	_results = { 0.0f. 0.0f. 0.0f, 0.0f };
+	_results = { 0.0f, 0.0f, 0.0f, 0.0f };
 }
 
 NavioInterface::~NavioInterface()
