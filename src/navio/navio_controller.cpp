@@ -148,13 +148,13 @@ int main( int argc, char **argv )
 {
   ros::init( argc, argv, "navio_controller" );
 
-  NavioController controller;
+  NavioController *controller = new NavioController();
 
-  controller.InitNavioInterface();
+  controller->InitNavioInterface();
 
   ROS_INFO( "Navio+ Controller Online" );
 
-  controller.Spin();
+  controller->Spin();
 
   ROS_INFO( "Shutting Down Navio Controller" );
 
