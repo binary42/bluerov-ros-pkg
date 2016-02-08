@@ -148,7 +148,7 @@ void * NavioController::PublishNavioData( void *controllerIn )
 // Signal handling
 void NavioController::StaticSignalHandler( int sigNumIn )
 {
-	staticContollerObject->SignalHandler( sigNumIn );
+	staticControllerObject->SignalHandler( sigNumIn );
 }
 void NavioController::SignalHandler( int sigNumIn )
 {
