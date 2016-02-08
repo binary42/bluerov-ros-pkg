@@ -21,6 +21,8 @@
 #include <pthread.h>
 #include <signal.h>
 
+#include <stdexcept>
+
 class NavioController
 {
  public:
@@ -60,3 +62,12 @@ class NavioController
 	static void StaticSignalHandler( int sigNumIn );
 };
 
+// Signal handling Class
+using std::runtim_error;
+
+class SignalException : public runtime_error
+{
+public:
+	SignalException( const std::string &messageIn ) : std::runtime_error( messageIn )
+	{}
+};
