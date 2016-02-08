@@ -160,6 +160,8 @@ void NavioController::SignalHandler( int sigNumIn )
 //------- Main -------------------------------
 int main( int argc, char **argv )
 {
+  int sigret;
+
   ros::init( argc, argv, "navio_controller" );
 
   std::unique_ptr<NavioController> controller( new NavioController );
@@ -168,9 +170,20 @@ int main( int argc, char **argv )
 
   ROS_INFO( "Navio+ Controller Online" );
 
-  controller->Spin();
+  try
+  {
+	  controller->Spin();
+  }
+  catch( SignalException &except )
+  {
+	  sigret = EXIT_FAILURE;
+	  return sigret;
+  }
 
-  ROS_INFO( "Shutting Down Navio Controller" );
 
-  return 0;
+  ROS_INFO( "Shutting Down Navio+ Controller" );
+
+  sigret = EXIT_SUCCESS;
+
+  return sigret;
 }

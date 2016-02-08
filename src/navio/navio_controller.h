@@ -8,13 +8,18 @@
 
 #include <ros/ros.h>
 #include <ros/console.h>
+
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/Joy.h>
+
 #include <sensor_msgs/Imu.h>
 #include <sensor_msgs/NavSatFix.h>
+
 #include <std_msgs/Bool.h>
 #include "navio_interface.cpp"
+
 #include <pthread.h>
+#include <signal.h>
 
 class NavioController
 {
