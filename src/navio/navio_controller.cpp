@@ -8,16 +8,18 @@
 
 #include "navio_controller.h"
 
+static NavioController		*staticControllerObject;
+
 NavioController::NavioController()
 {
   p_interface 	= new NavioInterface();
   _cmdVelSub 	= _nodeHandle.subscribe<geometry_msgs::Twist>( "cmd_vel", 1, &NavioController::VelCallback, this );
 
-  imuPub 	= _nodeHandle.advertise<sensor_msgs::Imu>( "imu_raw", 1 );
-  gpsPub 	= _nodeHandle.advertise<sensor_msgs::NavSatFix>( "gps_status", 1 );
+  m_imuPub 	= _nodeHandle.advertise<sensor_msgs::Imu>( "imu_raw", 1 );
+  m_gpsPub 	= _nodeHandle.advertise<sensor_msgs::NavSatFix>( "gps_status", 1 );
 
   //adcPub	= _nodeHandle.publish<sensor_ma -- create new message for adc --
-  ahrsPub	= _nodeHandle.advertise<sensor_msgs::Imu>( "imu_fused", 1 );
+  m_ahrsPub	= _nodeHandle.advertise<sensor_msgs::Imu>( "imu_fused", 1 );
 
   //baroPub	= _nodeHandle.publish< -- create new message for barometer --
 
@@ -25,7 +27,9 @@ NavioController::NavioController()
 
 NavioController::~NavioController()
 {
+	delete( p_interface );
 
+	pthread_exit( nullptr);
 }
 
 void NavioController::InitNavioInterface()
@@ -44,7 +48,7 @@ void NavioController::Spin()
 	  // 200Hz
 	   ros::Rate loopRate( 200 );
 
-	   while( ros::ok() )
+	   while( ros::ok() && !m_isDone )
 	   {
 	     ros::spinOnce();
 
@@ -108,7 +112,7 @@ void * NavioController::PublishNavioData( void *controllerIn )
   // A few things horrid about this block. Imu raw used the float[9] of the 
   // ROS Imu message type. No raw IMU message exists, so we need to create one.
   // For now, using existing messages for testing.
-  while( true )
+  while( !controller->m_isDone )
   {
     // IMU 
     data = controller->p_interface->GetIMU();
@@ -129,7 +133,7 @@ void * NavioController::PublishNavioData( void *controllerIn )
     imuRawMessage.angular_velocity_covariance[7] = data[7];
     imuRawMessage.angular_velocity_covariance[8] = data[8];
 
-    controller->imuPub.publish( imuRawMessage );
+    controller->m_imuPub.publish( imuRawMessage );
 
     // GPS
     //data = controller-GetGPS();
@@ -139,6 +143,18 @@ void * NavioController::PublishNavioData( void *controllerIn )
   }
 
   return nullptr;
+}
+
+// Signal handling
+void NavioController::StaticSignalHandler( int sigNumIn )
+{
+	staticContollerObject->SignalHandler( sigNumIn );
+}
+void NavioController::SignalHandler( int sigNumIn )
+{
+	ROS_INFO( ">>>> Caught Signal: %d Exiting <<<<", sigNumIn);
+
+	m_isDone = true;
 }
 
 //------- Main -------------------------------

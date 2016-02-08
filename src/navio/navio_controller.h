@@ -24,13 +24,14 @@ class NavioController
 
     // Attributes
     NavioInterface                      *p_interface;
-    ros::Publisher                      imuPub;
-    ros::Publisher                      gpsPub;
+    ros::Publisher                      m_imuPub;
+    ros::Publisher                      m_gpsPub;
 
-    ros::Publisher                      adcPub;
-    ros::Publisher                      ahrsPub;
+    ros::Publisher                      m_adcPub;
+    ros::Publisher                      m_ahrsPub;
 
-    ros::Publisher                      baroPub;
+    ros::Publisher                      m_baroPub;
+    bool								m_isDone;
 
     // Methods
     void Spin();
@@ -48,5 +49,9 @@ class NavioController
     void SetServo( int index, float value );
 
     static void *PublishNavioData( void *controllerIn );
+
+    // Signal handling
+	void SignalHandler( int sigNumIn );
+	static void StaticSignalHandler( int sigNumIn );
 };
 

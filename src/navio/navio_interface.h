@@ -14,7 +14,7 @@
 #include "../../thirdparty/navio/MS5611.h"
 #include "../../thirdparty/navio/ADS1115.h"
 
-#define ARRAY_SIZE(array) (sizeof(array)/sizeof(array[0]))
+#define ARRAY_SIZE(array) ( sizeof( array ) / sizeof( array[0] ) )
 
 enum EServoChannels
 {
@@ -41,19 +41,19 @@ class NavioInterface
     virtual ~NavioInterface();
 
     // Attributes
-    EServoChannels                      servoChannels;
+    EServoChannels                      m_servoChannels;
 
     // Methods
     int Initialize();
     void SetFrequency( int freqIn );
     void SendPWM( int channelNumIn, double pwmValIn );
 
-    std::vector<float> GetIMU();
+    std::vector<float> 	GetIMU();
     std::vector<double> GetGPS();
 
-    std::vector<float> GetBaro();
-    std::vector<float> GetAHRS();
-    std::vector<float> GetADC();
+    std::vector<float> 	GetBaro();
+    std::vector<float> 	GetAHRS();
+    std::vector<float> 	GetADC();
 
  private:
     // Attributes

@@ -29,6 +29,7 @@ NavioInterface::~NavioInterface()
 int NavioInterface::Initialize()
 {
   int ret = _pin.init();
+
   if( ret )
   {
     _pin.setMode( Navio::Pin::GpioModeOutput );
@@ -86,8 +87,6 @@ std::vector<float> NavioInterface::GetIMU()
   imuData.push_back( mx );
   imuData.push_back( my );
   imuData.push_back( mz );
-
-  ROS_INFO( "test data: %f", ax );
 
   return imuData;
 }
@@ -172,8 +171,8 @@ std::vector<float> NavioInterface::GetBaro()
 std::vector<float> NavioInterface::GetAHRS()
 {
   static std::vector<float> ahrsData( 0 );
-  ahrsData.clear();
 
+  ahrsData.clear();
 
   return ahrsData;
 }
