@@ -63,7 +63,7 @@ class NavioController
 };
 
 // Signal handling Class
-using std::runtim_error;
+using std::runtime_error;
 
 class SignalException : public runtime_error
 {
