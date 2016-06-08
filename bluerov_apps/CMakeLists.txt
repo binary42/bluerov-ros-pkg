@@ -36,7 +36,7 @@ generate_dynamic_reconfigure_options(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES bluerov_apps
-#  CATKIN_DEPENDS geometry_msgs nav_msgs pcl_conversions pcl_ros roscpp std_msgs tf
+#  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp std_msgs tf
 #  DEPENDS system_lib
 )
 
